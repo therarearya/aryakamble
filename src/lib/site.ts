@@ -2,7 +2,7 @@ export const site = {
   name: "Arya Kamble",
   role: "Growth Marketing · Content · Social",
   location: "Mumbai, India",
-  email: "aryakamble2503@gmail.com",
+  email: "12aryakamble@gmail.com",
   linkedin: "https://www.linkedin.com/in/aryakamble",
   intro:
     "I'm Arya, a growth-oriented marketing professional working across growth marketing, branding, content strategy and social media. I like building from zero, turning business problems into creative ideas, and using storytelling with strategy to make brands easier to remember.",
