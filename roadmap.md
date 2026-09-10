@@ -1,0 +1,1 @@
+- [ ] Redesign portfolio with white background, oxblood #773131, olive #898433, Instrument Serif, Work Sans, and asymmetric layout
