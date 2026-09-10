@@ -216,7 +216,7 @@ function BlockView({ block }: { block: Block }) {
 function CaseStudyPage() {
   const { study } = Route.useLoaderData();
   const idx = caseStudies.findIndex((c) => c.slug === study.slug);
-  const next = caseStudies[(idx + 1) % caseStudies.length];
+  const next = caseStudies[(idx + 1) % caseStudies.length]!;
 
   return (
     <div className="min-h-screen">
