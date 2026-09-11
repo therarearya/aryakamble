@@ -62,11 +62,11 @@ function BlockView({ block }: { block: Block }) {
 
     case "stats":
       return (
-        <section className="grid border-l border-border sm:grid-cols-3">
+        <section className="grid gap-px bg-border sm:grid-cols-3">
           {block.items.map((s) => (
-            <div key={s.label} className="border-b border-r border-t border-border p-7">
-              <div className="display text-5xl text-accent">{s.value}</div>
-              <p className="mt-3 text-sm text-muted-foreground">{s.label}</p>
+            <div key={s.label} className="blush-wash bg-background p-8">
+              <div className="display text-6xl">{s.value}</div>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.label}</p>
             </div>
           ))}
         </section>
@@ -82,7 +82,7 @@ function BlockView({ block }: { block: Block }) {
                 key={i}
                 className="border-b border-border py-5 text-base leading-relaxed text-muted-foreground"
               >
-                <span className="mr-4 text-accent">—</span>
+                <span className="mr-4 text-coral">✳</span>
                 {i}
               </li>
             ))}
@@ -96,11 +96,11 @@ function BlockView({ block }: { block: Block }) {
           <SectionHead num={block.num} kicker={block.kicker} heading={block.heading} />
           <div className="grid gap-px bg-border sm:grid-cols-2">
             {block.items.map((s, i) => (
-              <div key={s.title} className="bg-background p-7">
-                <span className="kicker text-muted-foreground">
+              <div key={s.title} className="bg-background p-8">
+                <span className="display block text-5xl text-muted-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="display mt-4 text-xl">{s.title}</h3>
+                <h3 className="display mt-6 text-2xl">{s.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
               </div>
             ))}
@@ -114,18 +114,18 @@ function BlockView({ block }: { block: Block }) {
           <SectionHead num={block.num} kicker={block.kicker} heading={block.heading} />
           <div className="grid gap-px bg-border md:grid-cols-3">
             {block.items.map((p) => (
-              <div key={p.tag} className="flex flex-col justify-between gap-6 bg-background p-7">
+              <div key={p.tag} className="flex flex-col justify-between gap-6 bg-background p-8">
                 <div>
                   <span className="kicker">{p.tag}</span>
-                  <h3 className="display mt-4 text-2xl">{p.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+                  <h3 className="display mt-5 text-3xl">{p.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
                 </div>
                 {p.href && (
                   <a
                     href={p.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs uppercase tracking-[0.18em] text-accent hover:underline"
+                    className="text-[11px] uppercase tracking-[0.18em] text-coral hover:underline"
                   >
                     {p.cta} ↗
                   </a>
@@ -140,7 +140,7 @@ function BlockView({ block }: { block: Block }) {
       return (
         <section className="py-14">
           <SectionHead num={block.num} kicker={block.kicker} heading={block.heading} />
-          <div className="flex flex-col items-start gap-6 border border-border p-8">
+          <div className="blush-wash flex flex-col items-start gap-6 border border-border p-10">
             <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
               {block.body}
             </p>
@@ -148,7 +148,7 @@ function BlockView({ block }: { block: Block }) {
               href={block.href}
               target="_blank"
               rel="noreferrer"
-              className="bg-accent px-6 py-3 text-xs uppercase tracking-[0.18em] text-accent-foreground transition-opacity hover:opacity-85"
+              className="rounded-full bg-foreground px-7 py-3.5 text-[11px] uppercase tracking-[0.18em] text-background transition-opacity hover:opacity-85"
             >
               {block.cta} ↗
             </a>
@@ -173,7 +173,7 @@ function BlockView({ block }: { block: Block }) {
             {block.items.map((item, i) => {
               const media = (
                 <figure className="group">
-                  <div className="overflow-hidden border border-border bg-card">
+                  <div className="overflow-hidden rounded-sm border border-border bg-card">
                     <img
                       src={item.src}
                       alt={item.alt}
@@ -192,7 +192,7 @@ function BlockView({ block }: { block: Block }) {
                         </p>
                       )}
                       {item.href && (
-                        <span className="mt-2 inline-block text-xs uppercase tracking-[0.16em] text-accent">
+                        <span className="mt-2 inline-block text-[11px] uppercase tracking-[0.16em] text-coral">
                           {item.cta ?? "Open"} ↗
                         </span>
                       )}
@@ -224,30 +224,34 @@ function CaseStudyPage() {
     <div className="min-h-screen">
       <SiteNav />
 
-      <main className="mx-auto max-w-[1240px] px-5 sm:px-8">
+      <main className="mx-auto max-w-[1320px] px-5 sm:px-8">
         <div className="pt-14">
           <Link
             to="/"
             hash="work"
-            className="text-xs uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-accent"
+            className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-coral"
           >
             ← Back to selected work
           </Link>
         </div>
 
-        <header className="border-b border-border py-14">
-          <p className="kicker">
-            {study.num} / {study.client} · {study.discipline}
-          </p>
-          <h1 className="display mt-6 max-w-4xl text-5xl sm:text-8xl">{study.title}</h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+        <header className="reveal-up border-b border-border py-16">
+          <div className="flex items-center gap-6">
+            <span className="kicker">({study.num})</span>
+            <span className="h-px flex-1 bg-border" aria-hidden="true" />
+            <span className="kicker text-foreground">
+              {study.client} · {study.discipline}
+            </span>
+          </div>
+          <h1 className="display mt-10 max-w-4xl text-6xl sm:text-8xl">{study.title}</h1>
+          <p className="mt-10 max-w-2xl text-sm uppercase leading-relaxed tracking-[0.06em] text-muted-foreground">
             {study.lead}
           </p>
           <div className="mt-8 flex flex-wrap gap-2">
             {study.tags.map((t) => (
               <span
                 key={t}
-                className="border border-border px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground"
+                className="rounded-full border border-border px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-muted-foreground"
               >
                 {t}
               </span>
@@ -259,20 +263,22 @@ function CaseStudyPage() {
           <BlockView key={i} block={b} />
         ))}
 
-        <section className="border-t border-border py-16">
-          <p className="kicker">Next project</p>
-          <Link to="/work/$slug" params={{ slug: next.slug }} className="group mt-6 block">
-            <h2 className="display text-4xl transition-colors group-hover:text-accent sm:text-7xl">
+        <section className="border-t border-border py-20">
+          <p className="kicker">Next project ✳</p>
+          <Link to="/work/$slug" params={{ slug: next.slug }} className="group mt-8 block">
+            <h2 className="display text-5xl transition-colors group-hover:text-coral sm:text-7xl">
               {next.title}
             </h2>
-            <p className="mt-4 max-w-xl text-sm text-muted-foreground">{next.summary}</p>
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              {next.summary}
+            </p>
           </Link>
         </section>
 
         <section className="border-t border-border py-16">
           <p className="text-sm text-muted-foreground">
             Want something like this?{" "}
-            <a href={`mailto:${site.email}`} className="text-accent hover:underline">
+            <a href={`mailto:${site.email}`} className="text-coral hover:underline">
               {site.email}
             </a>
           </p>
