@@ -37,35 +37,47 @@ function Home() {
 
       <main>
         {/* Hero */}
-        <section className="mx-auto max-w-[1240px] px-5 pb-16 pt-20 sm:px-8 sm:pb-24 sm:pt-28">
-          <p className="kicker reveal-up">{site.role}</p>
-          <h1 className="display reveal-up mt-6 text-[15vw] leading-[0.84] sm:text-[11vw] lg:text-[9.5rem]">
-            Arya
-            <br />
-            Kamble
-          </h1>
-          <div className="mt-10 grid gap-10 border-t border-border pt-8 md:grid-cols-[1.1fr_0.9fr]">
-            <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">{site.intro}</p>
-            <div className="flex flex-col items-start gap-5 md:items-end">
-              <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                {site.location}
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  to="/"
-                  hash="work"
-                  className="bg-accent px-6 py-3 text-xs uppercase tracking-[0.18em] text-accent-foreground transition-opacity hover:opacity-85"
-                >
-                  See the work →
-                </Link>
-                <a
-                  href={site.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="border border-foreground/30 px-6 py-3 text-xs uppercase tracking-[0.18em] transition-colors hover:border-accent hover:text-accent"
-                >
-                  LinkedIn ↗
-                </a>
+        <section className="ink-panel">
+          <div className="mx-auto max-w-[1320px] px-5 pb-28 pt-20 sm:px-8 sm:pb-40 sm:pt-28">
+            <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr]">
+              <div>
+                <div className="reveal-up flex items-center gap-5">
+                  <span className="h-px w-16 bg-ivory/40" aria-hidden="true" />
+                  <p className="text-[11px] uppercase tracking-[0.26em] text-ivory/70">
+                    {site.role}
+                  </p>
+                </div>
+                <h1 className="display reveal-up mt-8 text-[17vw] leading-[0.86] text-ivory sm:text-[11vw] lg:text-[9.5rem]">
+                  Arya
+                  <span className="px-4 align-middle text-[0.45em] text-ivory/80">✳</span>
+                  <br />
+                  Kamble
+                </h1>
+              </div>
+              <div className="flex flex-col justify-start gap-8 lg:pt-6">
+                <p className="max-w-md text-sm uppercase leading-relaxed tracking-[0.06em] text-ivory/75">
+                  {site.intro}
+                </p>
+                <p className="text-[11px] uppercase tracking-[0.26em] text-ivory/60">
+                  {site.location}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    to="/"
+                    hash="work"
+                    className="rounded-full bg-ivory px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-ink transition-opacity hover:opacity-85"
+                  >
+                    ↗ See the work
+                  </Link>
+                  <a
+                    href={site.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full border border-ivory/40 px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-ivory transition-colors hover:bg-ivory hover:text-ink"
+                  >
+                    LinkedIn ↗
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -74,25 +86,27 @@ function Home() {
         <Marquee words={marqueeWords} />
 
         {/* About */}
-        <section id="about" className="mx-auto max-w-[1240px] scroll-mt-20 px-5 py-24 sm:px-8">
+        <section id="about" className="mx-auto max-w-[1320px] scroll-mt-20 px-5 py-28 sm:px-8">
           <SectionLabel num="01" label="About" />
-          <div className="grid gap-12 md:grid-cols-[1fr_1fr]">
-            <h2 className="display text-4xl sm:text-6xl">
-              Marketing that thinks.
+          <div className="grid gap-14 md:grid-cols-[1fr_1fr]">
+            <h2 className="display text-5xl sm:text-7xl">
+              Marketing
               <br />
-              <span className="text-accent">Content that moves.</span>
+              that thinks.
+              <br />
+              <span className="text-coral">✳</span> Content that moves.
             </h2>
-            <div className="space-y-6">
+            <div className="space-y-6 md:pt-3">
               {aboutCopy.map((p) => (
                 <p key={p} className="text-base leading-relaxed text-muted-foreground">
                   {p}
                 </p>
               ))}
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-2 pt-4">
                 {skills.map((s) => (
                   <span
                     key={s}
-                    className="border border-border px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground"
+                    className="rounded-full border border-border px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-muted-foreground"
                   >
                     {s}
                   </span>
@@ -103,26 +117,28 @@ function Home() {
         </section>
 
         {/* Impact */}
-        <section className="mx-auto max-w-[1240px] px-5 pb-24 sm:px-8">
+        <section className="mx-auto max-w-[1320px] px-5 pb-28 sm:px-8">
           <SectionLabel num="02" label="Impact" />
-          <div className="grid border-l border-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
             {metrics.map((m) => (
-              <div key={m.label} className="border-b border-r border-t border-border p-7">
-                <div className="display text-5xl text-accent">{m.value}</div>
-                <p className="mt-3 text-sm text-muted-foreground">{m.label}</p>
+              <div key={m.label} className="blush-wash bg-background p-8">
+                <div className="display text-6xl">{m.value}</div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{m.label}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* Work */}
-        <section id="work" className="mx-auto max-w-[1240px] scroll-mt-20 px-5 pb-24 sm:px-8">
+        <section id="work" className="mx-auto max-w-[1320px] scroll-mt-20 px-5 pb-28 sm:px-8">
           <SectionLabel num="03" label="Selected work" />
-          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <h2 className="display max-w-xl text-4xl sm:text-6xl">
-              Real briefs. Real budgets. Real posts.
+          <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <h2 className="display max-w-2xl text-5xl sm:text-7xl">
+              Real briefs. Real budgets.
+              <br />
+              Real posts.
             </h2>
-            <p className="max-w-sm text-sm text-muted-foreground">
+            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
               Eight projects, each with its own case study — the thinking, the execution and the
               work as it actually shipped.
             </p>
@@ -134,21 +150,21 @@ function Home() {
                 key={c.slug}
                 to="/work/$slug"
                 params={{ slug: c.slug }}
-                className="group grid gap-4 border-b border-border py-8 transition-colors hover:bg-card md:grid-cols-[auto_1fr_auto] md:items-center md:gap-10 md:px-4"
+                className="group grid gap-4 border-b border-border py-10 transition-colors hover:bg-card md:grid-cols-[80px_1fr_auto] md:items-baseline md:gap-12 md:px-5"
               >
-                <span className="kicker text-muted-foreground">{c.num}</span>
+                <span className="kicker">({c.num})</span>
                 <div>
                   <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
                     {c.client} · {c.discipline}
                   </p>
-                  <h3 className="display mt-3 text-3xl transition-colors group-hover:text-accent sm:text-5xl">
+                  <h3 className="display mt-4 text-4xl transition-colors group-hover:text-coral sm:text-6xl">
                     {c.title}
                   </h3>
-                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                     {c.summary}
                   </p>
                 </div>
-                <span className="text-xs uppercase tracking-[0.18em] text-accent">
+                <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors group-hover:text-coral">
                   Case study ↗
                 </span>
               </Link>
@@ -157,22 +173,24 @@ function Home() {
         </section>
 
         {/* Experience */}
-        <section id="experience" className="mx-auto max-w-[1240px] scroll-mt-20 px-5 pb-24 sm:px-8">
+        <section id="experience" className="mx-auto max-w-[1320px] scroll-mt-20 px-5 pb-28 sm:px-8">
           <SectionLabel num="04" label="Journey" />
-          <h2 className="display mb-12 text-4xl sm:text-6xl">Where the work happened.</h2>
+          <h2 className="display mb-14 text-5xl sm:text-7xl">Where the work happened.</h2>
           <div className="space-y-0">
             {experience.map((e) => (
               <div
                 key={e.role + e.company}
-                className="grid gap-4 border-t border-border py-8 md:grid-cols-[220px_1fr] md:gap-12"
+                className="grid gap-5 border-t border-border py-10 md:grid-cols-[240px_1fr] md:gap-14"
               >
-                <p className="text-xs uppercase tracking-[0.18em] text-accent">{e.date}</p>
+                <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  {e.date}
+                </p>
                 <div>
-                  <h3 className="display text-2xl sm:text-3xl">{e.role}</h3>
-                  <p className="mt-2 text-sm uppercase tracking-[0.14em] text-muted-foreground">
+                  <h3 className="display text-3xl sm:text-4xl">{e.role}</h3>
+                  <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-coral">
                     {e.company}
                   </p>
-                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-5 max-w-3xl text-sm leading-relaxed text-muted-foreground">
                     {e.body}
                   </p>
                 </div>
@@ -182,12 +200,13 @@ function Home() {
         </section>
 
         {/* Services */}
-        <section className="mx-auto max-w-[1240px] px-5 pb-24 sm:px-8">
+        <section className="mx-auto max-w-[1320px] px-5 pb-28 sm:px-8">
           <SectionLabel num="05" label="What I can do" />
-          <div className="grid gap-8 md:grid-cols-3">
-            {services.map((s) => (
-              <div key={s.title} className="border-t border-foreground/40 pt-5">
-                <h3 className="display text-xl">{s.title}</h3>
+          <div className="grid gap-px bg-border md:grid-cols-3">
+            {services.map((s, i) => (
+              <div key={s.title} className="bg-background p-8">
+                <span className="kicker">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="display mt-6 text-3xl">{s.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
               </div>
             ))}
@@ -195,21 +214,22 @@ function Home() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="scroll-mt-20 border-t border-border bg-card">
-          <div className="mx-auto max-w-[1240px] px-5 py-24 sm:px-8">
-            <p className="kicker">06 / Contact</p>
-            <h2 className="display mt-6 text-5xl sm:text-8xl">
+        <section id="contact" className="ink-panel scroll-mt-20">
+          <div className="mx-auto max-w-[1320px] px-5 py-28 sm:px-8">
+            <p className="text-[11px] uppercase tracking-[0.26em] text-ivory/70">06 / Contact</p>
+            <h2 className="display mt-8 text-6xl text-ivory sm:text-8xl">
               Let's make something
               <br />
               people remember.
+              <span className="ml-4 inline-block text-[0.5em] text-ivory/70">✳</span>
             </h2>
-            <p className="mt-8 max-w-lg text-base text-muted-foreground">
+            <p className="mt-10 max-w-lg text-sm uppercase leading-relaxed tracking-[0.06em] text-ivory/75">
               For marketing, social media, content, campaign or brand projects, reach me directly.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <a
                 href={`mailto:${site.email}`}
-                className="bg-accent px-7 py-4 text-xs uppercase tracking-[0.18em] text-accent-foreground transition-opacity hover:opacity-85"
+                className="rounded-full bg-ivory px-7 py-4 text-[11px] uppercase tracking-[0.18em] text-ink transition-opacity hover:opacity-85"
               >
                 {site.email}
               </a>
@@ -217,7 +237,7 @@ function Home() {
                 href={site.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="border border-foreground/30 px-7 py-4 text-xs uppercase tracking-[0.18em] transition-colors hover:border-accent hover:text-accent"
+                className="rounded-full border border-ivory/40 px-7 py-4 text-[11px] uppercase tracking-[0.18em] text-ivory transition-colors hover:bg-ivory hover:text-ink"
               >
                 Connect on LinkedIn ↗
               </a>
