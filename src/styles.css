@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Arya Kamble — white editorial design system. */
+/* Arya Kamble — editorial creative-studio design system. */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -33,44 +33,44 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ink: var(--ink);
-  --color-paper: var(--paper);
-  --color-oxblood: var(--oxblood);
-  --color-olive: var(--olive);
-  --font-display: "Instrument Serif", Georgia, serif;
+  --color-ivory: var(--ivory);
+  --color-coral: var(--coral);
+  --color-blush: var(--blush);
+  --font-display: "Instrument Serif", "Times New Roman", serif;
   --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.5rem;
-  --ink: oklch(0.3 0.018 42);
-  --paper: oklch(0.99 0.004 80);
-  --oxblood: #773131;
-  --olive: #898433;
+  --radius: 0.25rem;
+  --ink: oklch(0.16 0.008 30);
+  --ivory: oklch(0.985 0.006 85);
+  --coral: oklch(0.66 0.19 15);
+  --blush: oklch(0.86 0.09 12);
 
-  --background: oklch(0.99 0.004 80);
-  --foreground: oklch(0.3 0.018 42);
-  --card: oklch(0.97 0.008 78);
-  --card-foreground: oklch(0.3 0.018 42);
-  --popover: oklch(0.99 0.004 80);
-  --popover-foreground: oklch(0.3 0.018 42);
-  --primary: #773131;
-  --primary-foreground: oklch(0.99 0.004 80);
-  --secondary: oklch(0.95 0.012 95);
-  --secondary-foreground: oklch(0.3 0.018 42);
+  --background: oklch(0.985 0.006 85);
+  --foreground: oklch(0.18 0.008 30);
+  --card: oklch(0.965 0.008 78);
+  --card-foreground: oklch(0.18 0.008 30);
+  --popover: oklch(0.985 0.006 85);
+  --popover-foreground: oklch(0.18 0.008 30);
+  --primary: oklch(0.18 0.008 30);
+  --primary-foreground: oklch(0.985 0.006 85);
+  --secondary: oklch(0.95 0.012 85);
+  --secondary-foreground: oklch(0.18 0.008 30);
   --muted: oklch(0.95 0.008 78);
-  --muted-foreground: oklch(0.5 0.02 55);
-  --accent: #773131;
-  --accent-foreground: oklch(0.99 0.004 80);
+  --muted-foreground: oklch(0.48 0.012 40);
+  --accent: oklch(0.6 0.2 14);
+  --accent-foreground: oklch(0.985 0.006 85);
   --destructive: oklch(0.6 0.21 25);
   --destructive-foreground: oklch(0.97 0.01 85);
-  --border: oklch(0.3 0.018 42 / 16%);
-  --input: oklch(0.3 0.018 42 / 18%);
-  --ring: #773131;
+  --border: oklch(0.18 0.008 30 / 14%);
+  --input: oklch(0.18 0.008 30 / 18%);
+  --ring: oklch(0.6 0.2 14);
 }
 
 .dark {
-  --background: oklch(0.99 0.004 80);
-  --foreground: oklch(0.3 0.018 42);
+  --background: oklch(0.985 0.006 85);
+  --foreground: oklch(0.18 0.008 30);
 }
 
 @layer base {
@@ -90,34 +90,70 @@
   }
 
   ::selection {
-    background: var(--oxblood);
-    color: var(--paper);
+    background: var(--coral);
+    color: var(--ivory);
   }
 }
 
 @utility display {
   font-family: var(--font-display);
   font-weight: 400;
-  letter-spacing: 0;
-  line-height: 0.94;
+  letter-spacing: -0.01em;
+  line-height: 0.92;
 }
 
 @utility kicker {
   font-size: 0.6875rem;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--oxblood);
-  font-weight: 600;
+  color: var(--muted-foreground);
+  font-weight: 500;
 }
 
-@utility rule-top {
+/* Deep ink panel with a soft coral aurora, as in the reference. */
+@utility ink-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: oklch(0.14 0.008 30);
+  color: var(--ivory);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -30% -10% -55% -10%;
+    z-index: -1;
+    background:
+      radial-gradient(60% 55% at 78% 82%, oklch(0.68 0.22 12 / 0.95), transparent 62%),
+      radial-gradient(55% 50% at 28% 100%, oklch(0.82 0.13 8 / 0.7), transparent 60%),
+      radial-gradient(80% 60% at 50% 130%, oklch(0.95 0.05 20 / 0.85), transparent 70%);
+    filter: blur(10px);
+  }
+}
+
+@utility blush-wash {
+  background:
+    radial-gradient(50% 60% at 0% 40%, oklch(0.9 0.07 12 / 0.55), transparent 65%),
+    radial-gradient(45% 55% at 100% 90%, oklch(0.92 0.06 20 / 0.5), transparent 65%);
+}
+
+@utility hairline {
   border-top: 1px solid var(--color-border);
+}
+
+@utility pill {
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 @utility marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 38s linear infinite;
+  animation: marquee-scroll 42s linear infinite;
 }
 
 @keyframes marquee-scroll {
@@ -130,13 +166,13 @@
 }
 
 @utility reveal-up {
-  animation: reveal-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: reveal-up 0.9s cubic-bezier(0.22, 0.7, 0.2, 1) both;
 }
 
 @keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(26px);
   }
   to {
     opacity: 1;
@@ -144,7 +180,23 @@
   }
 }
 
+@utility spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .marquee-track, .reveal-up { animation: none; }
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track,
+  .reveal-up,
+  .spin-slow {
+    animation: none;
+  }
 }
