@@ -33,11 +33,13 @@ export const Route = createFileRoute("/work/$slug")({
 
 function SectionHead({ num, kicker, heading }: { num: string; kicker: string; heading: string }) {
   return (
-    <div className="mb-8 border-t border-border pt-4">
-      <p className="kicker">
-        {num} / {kicker}
-      </p>
-      <h2 className="display mt-6 max-w-3xl text-3xl sm:text-5xl">{heading}</h2>
+    <div className="mb-10 border-t border-border pt-5">
+      <div className="flex items-center gap-6">
+        <span className="kicker">({num})</span>
+        <span className="h-px flex-1 bg-border" aria-hidden="true" />
+        <span className="kicker text-foreground">{kicker}</span>
+      </div>
+      <h2 className="display mt-8 max-w-3xl text-4xl sm:text-6xl">{heading}</h2>
     </div>
   );
 }
