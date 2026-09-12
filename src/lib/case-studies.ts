@@ -8,6 +8,7 @@ import smb1 from "@/assets/she-means-business-cover.jpg.asset.json";
 import smb2 from "@/assets/she-means-business-02.jpg.asset.json";
 import smb3 from "@/assets/she-means-business-03.jpg.asset.json";
 import smb4 from "@/assets/she-means-business-04.jpg.asset.json";
+import valCover from "@/assets/valentines-cofounder-cover.png.asset.json";
 import val1 from "@/assets/valentines-cofounder-01.jpg.asset.json";
 import val2 from "@/assets/valentines-cofounder-02.jpg.asset.json";
 import val3 from "@/assets/valentines-cofounder-03.jpg.asset.json";
