@@ -8,6 +8,7 @@ import smb1 from "@/assets/she-means-business-cover.jpg.asset.json";
 import smb2 from "@/assets/she-means-business-02.jpg.asset.json";
 import smb3 from "@/assets/she-means-business-03.jpg.asset.json";
 import smb4 from "@/assets/she-means-business-04.jpg.asset.json";
+import valCover from "@/assets/valentines-cofounder-cover.png.asset.json";
 import val1 from "@/assets/valentines-cofounder-01.jpg.asset.json";
 import val2 from "@/assets/valentines-cofounder-02.jpg.asset.json";
 import val3 from "@/assets/valentines-cofounder-03.jpg.asset.json";
@@ -371,7 +372,7 @@ export const caseStudies: CaseStudy[] = [
       "Reframed Valentine's Week as “Will You Be My Co-Founder?” to connect love, partnership, ambition and entrepreneurship.",
     lead: "I turned Valentine's Week into a “Will You Be My Co-Founder?” campaign — reframing a familiar cultural moment around partnership, ambition and entrepreneurship.",
     tags: ["Campaign Concept", "Creative Strategy", "Social Media", "Short-Form Content"],
-    cover: val1.url,
+    cover: valCover.url,
     blocks: [
       {
         kind: "prose",
