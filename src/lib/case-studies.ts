@@ -372,7 +372,7 @@ export const caseStudies: CaseStudy[] = [
       "Reframed Valentine's Week as “Will You Be My Co-Founder?” to connect love, partnership, ambition and entrepreneurship.",
     lead: "I turned Valentine's Week into a “Will You Be My Co-Founder?” campaign — reframing a familiar cultural moment around partnership, ambition and entrepreneurship.",
     tags: ["Campaign Concept", "Creative Strategy", "Social Media", "Short-Form Content"],
-    cover: val1.url,
+    cover: valCover.url,
     blocks: [
       {
         kind: "prose",
