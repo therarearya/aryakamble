@@ -4,7 +4,7 @@ import brunch3 from "@/assets/she-e-o-brunch-03.jpg.asset.json";
 import brunch4 from "@/assets/she-e-o-brunch-04.jpg.asset.json";
 import wp1 from "@/assets/womenpreneur-india-01.jpg.asset.json";
 import wp2 from "@/assets/womenpreneur-india-02.jpg.asset.json";
-import smb1 from "@/assets/she-means-business-01.png.asset.json";
+import smb1 from "@/assets/she-means-business-cover.jpg.asset.json";
 import smb2 from "@/assets/she-means-business-02.jpg.asset.json";
 import smb3 from "@/assets/she-means-business-03.jpg.asset.json";
 import smb4 from "@/assets/she-means-business-04.jpg.asset.json";
