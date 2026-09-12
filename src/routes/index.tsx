@@ -130,45 +130,113 @@ function Home() {
         </section>
 
         {/* Work */}
-        <section id="work" className="mx-auto max-w-[1320px] scroll-mt-20 px-5 pb-28 sm:px-8">
-          <SectionLabel num="03" label="Selected work" />
-          <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <h2 className="display max-w-2xl text-5xl sm:text-7xl">
-              Real briefs. Real budgets.
-              <br />
-              Real posts.
-            </h2>
-            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Eight projects, each with its own case study — the thinking, the execution and the
-              work as it actually shipped.
-            </p>
+        <section id="work" className="scroll-mt-20 pb-28">
+          {/* Dark editorial header */}
+          <div className="ink-panel">
+            <div className="mx-auto max-w-[1320px] px-5 py-20 sm:px-8 sm:py-28">
+              <div className="flex items-center gap-5">
+                <p className="text-[11px] uppercase tracking-[0.26em] text-ivory/70">
+                  03 / Selected work
+                </p>
+                <span className="h-px flex-1 bg-ivory/25" aria-hidden="true" />
+                <p className="hidden text-[11px] uppercase tracking-[0.26em] text-ivory/70 sm:block">
+                  Ideas → Content → Impact
+                </p>
+              </div>
+              <div className="mt-10 grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
+                <h2 className="display text-[15vw] leading-[0.9] text-ivory sm:text-[10vw] lg:text-[8rem]">
+                  Selected
+                  <br />
+                  <span className="mr-4 inline-block align-middle text-[0.5em] text-ivory/80">✳</span>
+                  Work
+                </h2>
+                <p className="max-w-md text-sm leading-relaxed text-ivory/80">
+                  Eight projects, each with its own case study — the thinking, the execution and the
+                  work as it actually shipped. Real briefs. Real budgets. Real posts.
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="border-t border-border">
-            {caseStudies.map((c) => (
-              <Link
-                key={c.slug}
-                to="/work/$slug"
-                params={{ slug: c.slug }}
-                className="group grid gap-4 border-b border-border py-10 transition-colors hover:bg-card md:grid-cols-[80px_1fr_auto] md:items-baseline md:gap-12 md:px-5"
-              >
-                <span className="kicker">({c.num})</span>
-                <div>
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                    {c.client} · {c.discipline}
-                  </p>
-                  <h3 className="display mt-4 text-4xl transition-colors group-hover:text-coral sm:text-6xl">
-                    {c.title}
-                  </h3>
-                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                    {c.summary}
-                  </p>
-                </div>
-                <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors group-hover:text-coral">
-                  Case study ↗
-                </span>
-              </Link>
-            ))}
+          {/* Card grid */}
+          <div className="mx-auto max-w-[1320px] px-5 pt-14 sm:px-8 sm:pt-20">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {caseStudies.map((c, i) => {
+                const dark = (i + Math.floor(i / 3)) % 2 === 1;
+                return (
+                  <Link
+                    key={c.slug}
+                    to="/work/$slug"
+                    params={{ slug: c.slug }}
+                    className={`group flex flex-col overflow-hidden border transition-transform duration-300 hover:-translate-y-1 ${
+                      dark ? "ink-panel border-transparent" : "blush-wash border-border bg-card"
+                    }`}
+                  >
+                    <div className="flex items-center gap-4 px-7 pt-7">
+                      <span
+                        className={`display text-4xl sm:text-5xl ${dark ? "text-ivory" : "text-foreground"}`}
+                      >
+                        {c.num}
+                      </span>
+                      <span
+                        className={`h-px flex-1 ${dark ? "bg-ivory/30" : "bg-border"}`}
+                        aria-hidden="true"
+                      />
+                      <span
+                        className={`text-[10px] uppercase leading-tight tracking-[0.18em] ${
+                          dark ? "text-ivory/70" : "text-muted-foreground"
+                        }`}
+                      >
+                        {c.discipline}
+                      </span>
+                    </div>
+                    <div className="mt-6 overflow-hidden px-7">
+                      <img
+                        src={c.cover}
+                        alt={c.title}
+                        loading="lazy"
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col px-7 pb-7 pt-6">
+                      <h3
+                        className={`display text-2xl leading-tight sm:text-[1.7rem] ${
+                          dark ? "text-ivory" : "text-foreground"
+                        }`}
+                      >
+                        {c.title}
+                      </h3>
+                      <p
+                        className={`mt-3 text-[13px] leading-relaxed ${
+                          dark ? "text-ivory/70" : "text-muted-foreground"
+                        }`}
+                      >
+                        {c.summary}
+                      </p>
+                      <div className="mt-auto flex items-center justify-between pt-7">
+                        <span
+                          className={`text-[10px] uppercase tracking-[0.22em] transition-colors ${
+                            dark ? "text-ivory/75 group-hover:text-ivory" : "text-foreground/75 group-hover:text-coral"
+                          }`}
+                        >
+                          View project
+                        </span>
+                        <span
+                          className={`flex h-11 w-11 items-center justify-center rounded-full border text-base transition-all duration-300 group-hover:rotate-45 ${
+                            dark
+                              ? "border-ivory/50 text-ivory"
+                              : "border-foreground/40 text-foreground group-hover:border-coral group-hover:text-coral"
+                          }`}
+                          aria-hidden="true"
+                        >
+                          ↗
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </section>
 
