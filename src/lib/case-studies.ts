@@ -26,6 +26,7 @@ import cp7 from "@/assets/concept-posts-07.jpg.asset.json";
 import deli1 from "@/assets/freelance-deli-01.jpg.asset.json";
 import deli2 from "@/assets/freelance-deli-02.jpg.asset.json";
 import bb01 from "@/assets/bluebird-01.jpg.asset.json";
+import bluebirdCover from "@/assets/bluebird-cover.jpg.asset.json";
 import bb02 from "@/assets/bluebird-02.jpg.asset.json";
 import bb03 from "@/assets/bluebird-03.jpg.asset.json";
 import bb04 from "@/assets/bluebird-04.jpg.asset.json";
