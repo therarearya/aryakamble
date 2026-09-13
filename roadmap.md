@@ -1,1 +1,1 @@
-- [ ] Redesign portfolio with white background, oxblood #773131, olive #898433, Instrument Serif, Work Sans, and asymmetric layout
+- [ ] Transform the Blue Bird Industries 24-page gallery into an interactive 3D book
