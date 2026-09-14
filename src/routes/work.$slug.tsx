@@ -1,7 +1,12 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ClientOnly, createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 import { SiteFooter, SiteNav } from "@/components/site-chrome";
 import { caseStudies, getCaseStudy, type Block } from "@/lib/case-studies";
 import { site } from "@/lib/site";
+
+const BluebirdBook = lazy(() =>
+  import("@/components/bluebird-book").then((module) => ({ default: module.BluebirdBook })),
+);
 
 export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {
@@ -44,7 +49,7 @@ function SectionHead({ num, kicker, heading }: { num: string; kicker: string; he
   );
 }
 
-function BlockView({ block }: { block: Block }) {
+function BlockView({ block, interactiveBook = false }: { block: Block; interactiveBook?: boolean }) {
   switch (block.kind) {
     case "prose":
       return (
@@ -169,6 +174,21 @@ function BlockView({ block }: { block: Block }) {
           {block.note && (
             <p className="-mt-2 mb-8 max-w-2xl text-sm text-muted-foreground">{block.note}</p>
           )}
+          {interactiveBook ? (
+            <ClientOnly
+              fallback={
+                <div className="aspect-[4/5] animate-pulse border border-border bg-card sm:aspect-[16/10]" />
+              }
+            >
+              <Suspense
+                fallback={
+                  <div className="aspect-[4/5] animate-pulse border border-border bg-card sm:aspect-[16/10]" />
+                }
+              >
+                <BluebirdBook items={block.items} />
+              </Suspense>
+            </ClientOnly>
+          ) : (
           <div className={`grid gap-5 ${cols}`}>
             {block.items.map((item, i) => {
               const media = (
@@ -209,6 +229,7 @@ function BlockView({ block }: { block: Block }) {
               );
             })}
           </div>
+          )}
         </section>
       );
     }
@@ -260,7 +281,11 @@ function CaseStudyPage() {
         </header>
 
         {study.blocks.map((b, i) => (
-          <BlockView key={i} block={b} />
+          <BlockView
+            key={i}
+            block={b}
+            interactiveBook={study.slug === "bluebird-company-profile" && b.kind === "gallery"}
+          />
         ))}
 
         <section className="border-t border-border py-20">
