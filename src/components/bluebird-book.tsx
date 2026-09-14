@@ -27,15 +27,10 @@ function createPageGeometry() {
   return geometry;
 }
 
-function prepareTexture(texture: THREE.Texture, flipHorizontal = false) {
+function prepareTexture(texture: THREE.Texture) {
   const prepared = texture.clone();
   prepared.colorSpace = THREE.SRGBColorSpace;
   prepared.anisotropy = 8;
-  if (flipHorizontal) {
-    prepared.wrapS = THREE.RepeatWrapping;
-    prepared.repeat.x = -1;
-    prepared.offset.x = 1;
-  }
   prepared.needsUpdate = true;
   return prepared;
 }
@@ -239,7 +234,7 @@ function BookModel({
 }) {
   const loaded = useLoader(THREE.TextureLoader, pageUrls);
   const textures = useMemo(
-    () => loaded.map((texture, index) => prepareTexture(texture, index % 2 === 1)),
+    () => loaded.map((texture) => prepareTexture(texture)),
     [loaded],
   );
   const { viewport } = useThree();
@@ -391,16 +386,16 @@ export function BluebirdBook({ items }: { items: GalleryItem[] }) {
 
       <div
         className="relative aspect-[4/5] touch-pan-y cursor-grab sm:aspect-[16/10]"
-        onPointerDown={onPointerDown}
-        onPointerUp={onPointerUp}
-        onPointerCancel={() => {
+        onPointerDownCapture={onPointerDown}
+        onPointerUpCapture={onPointerUp}
+        onPointerCancelCapture={() => {
           pointerStart.current = null;
         }}
         role="group"
         aria-label="Interactive 3D company profile. Click or swipe to turn pages."
       >
         <Canvas
-          shadows
+          shadows="basic"
           dpr={[1, 1.6]}
           camera={{ position: [0, 0.45, 11], fov: 45 }}
           gl={{ antialias: true, alpha: false }}
