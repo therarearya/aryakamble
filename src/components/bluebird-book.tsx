@@ -19,7 +19,7 @@ const PAGE_HEIGHT = 5.72;
 const LEAF_COUNT = 12;
 const PAGE_SEGMENTS = 28;
 const COVER_DEPTH = 0.105;
-const PAPER_STEP = 0.013;
+const PAPER_STEP = 0.025;
 
 function createPageGeometry() {
   const geometry = new THREE.PlaneGeometry(PAGE_WIDTH, PAGE_HEIGHT, PAGE_SEGMENTS, 1);

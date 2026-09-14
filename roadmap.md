@@ -1,1 +1,1 @@
-- [ ] Transform the Blue Bird Industries 24-page gallery into an interactive 3D book
+- [x] Transform the Blue Bird Industries 24-page gallery into an interactive 3D book
