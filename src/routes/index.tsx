@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Marquee } from "@/components/marquee";
 import { SectionLabel, SiteFooter, SiteNav } from "@/components/site-chrome";
 import { caseStudies } from "@/lib/case-studies";
+import { toolLogos } from "@/lib/logos";
 import {
   aboutCopy,
   experience,
