@@ -117,6 +117,27 @@ function Home() {
           </div>
         </section>
 
+        {/* Skills & Tools */}
+        <section className="mx-auto max-w-[1320px] px-5 pb-20 sm:px-8">
+          <div className="flex items-center gap-5">
+            <p className="text-[11px] uppercase tracking-[0.26em] text-muted-foreground">
+              Skills & Tools
+            </p>
+            <span className="h-px flex-1 bg-border" aria-hidden="true" />
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-5 sm:gap-8">
+            {toolLogos.map((tool) => (
+              <img
+                key={tool.name}
+                src={tool.url}
+                alt={`${tool.name} logo`}
+                loading="lazy"
+                className="h-9 w-9 rounded-lg object-contain sm:h-11 sm:w-11"
+              />
+            ))}
+          </div>
+        </section>
+
         {/* Impact */}
         <section className="mx-auto max-w-[1320px] px-5 pb-28 sm:px-8">
           <SectionLabel num="02" label="Impact" />
