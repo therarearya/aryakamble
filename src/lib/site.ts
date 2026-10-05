@@ -8,6 +8,15 @@ export const site = {
     "I'm Arya, a growth-oriented marketing professional working across growth marketing, branding, content strategy and social media. I like building from zero, turning business problems into creative ideas, and using storytelling with strategy to make brands easier to remember.",
 };
 
+export const capabilities = [
+  "Social Media",
+  "Content Strategy",
+  "Creative Direction",
+  "Branding",
+  "Campaign Ideation",
+  "AI-Assisted Creative",
+];
+
 export const metrics = [
   { value: "400K+", label: "organic reach generated" },
   { value: "10%+", label: "engagement across key social channels" },

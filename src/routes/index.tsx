@@ -1,21 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Marquee } from "@/components/marquee";
-import { SectionLabel, SiteFooter, SiteNav } from "@/components/site-chrome";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SiteFooter, SiteNav } from "@/components/site-chrome";
 import { caseStudies } from "@/lib/case-studies";
-import { toolLogos } from "@/lib/logos";
-import {
-  aboutCopy,
-  experience,
-  marqueeWords,
-  metrics,
-  services,
-  site,
-  skills,
-} from "@/lib/site";
+import { capabilities, metrics, site } from "@/lib/site";
 
-const title = "Arya Kamble — Growth Marketing, Content & Social Portfolio";
+const title = "Arya Kamble — Marketing & Creative Portfolio";
 const description =
-  "Portfolio of Arya Kamble, a Mumbai-based marketer working across growth marketing, branding, content strategy and social media. Campaigns, events, podcasts and brand work.";
+  "Marketing and creative work by Arya Kamble across social media, content strategy, branding, campaigns and creative direction.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,311 +23,126 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+function ProjectStory({ study, index }: { study: (typeof caseStudies)[number]; index: number }) {
+  const stat = study.blocks.find((block) => block.kind === "stats");
+  const proof = stat?.kind === "stats" ? stat.items[0] : undefined;
+  const reverse = index % 2 === 1;
+
+  return (
+    <article className="group border-t border-border py-10 sm:py-14">
+      <Link
+        to="/work/$slug"
+        params={{ slug: study.slug }}
+        className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-10"
+        aria-label={`View ${study.title} case study`}
+      >
+        <div className={`min-w-0 lg:col-span-5 ${reverse ? "lg:order-2 lg:pl-8" : ""}`}>
+          <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4">
+            <span className="text-xs text-coral">{study.num}</span>
+            <span className="h-px bg-border" aria-hidden="true" />
+            <ArrowUpRight className="h-4 w-4 -translate-x-2 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" aria-hidden="true" />
+          </div>
+          <p className="mt-8 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            {study.client} / {study.discipline}
+          </p>
+          <h3 className="display mt-4 text-4xl transition-transform duration-200 group-hover:translate-x-1 sm:text-6xl">
+            {study.title}
+          </h3>
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">{study.summary}</p>
+          {proof && (
+            <div className="mt-8 border-l border-coral pl-4">
+              <strong className="display block text-3xl">{proof.value}</strong>
+              <span className="mt-1 block text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{proof.label}</span>
+            </div>
+          )}
+          <span className="mt-9 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.18em]">
+            Read case study <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+          </span>
+        </div>
+        <div className={`overflow-hidden bg-card lg:col-span-7 ${reverse ? "lg:order-1" : ""}`}>
+          <img
+            src={study.cover}
+            alt={study.title}
+            loading={index < 2 ? "eager" : "lazy"}
+            className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+          />
+        </div>
+      </Link>
+    </article>
+  );
+}
+
 function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-clip">
       <SiteNav />
-
-      <main>
-        {/* Hero */}
-        <section className="ink-panel">
-          <div className="mx-auto max-w-[1320px] px-5 pb-28 pt-20 sm:px-8 sm:pb-40 sm:pt-28">
-            <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr]">
-              <div>
-                <div className="reveal-up flex items-center gap-5">
-                  <span className="h-px w-16 bg-ivory/40" aria-hidden="true" />
-                  <p className="text-[11px] uppercase tracking-[0.26em] text-ivory/70">
-                    {site.role}
-                  </p>
-                </div>
-                <h1 className="display reveal-up mt-8 text-[17vw] leading-[0.86] text-ivory sm:text-[11vw] lg:text-[9.5rem]">
-                  Arya
-                  <span className="px-4 align-middle text-[0.45em] text-ivory/80">✳</span>
-                  <br />
-                  Kamble
-                </h1>
+      <main id="main-content">
+        <section className="mx-auto max-w-[1400px] px-5 pb-16 pt-12 sm:px-8 sm:pb-20 sm:pt-16 lg:px-12 lg:pt-20">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <div className="reveal-up flex items-center gap-4">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-coral">Portfolio / 2026</span>
+                <span className="h-px w-12 bg-coral" aria-hidden="true" />
+                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Mumbai, India</span>
               </div>
-              <div className="flex flex-col justify-start gap-8 lg:pt-6">
-                <p className="max-w-md text-sm uppercase leading-relaxed tracking-[0.06em] text-ivory/75">
-                  {site.intro}
-                </p>
-                <p className="text-[11px] uppercase tracking-[0.26em] text-ivory/60">
-                  {site.location}
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    to="/"
-                    hash="work"
-                    className="rounded-full bg-ivory px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-ink transition-opacity hover:opacity-85"
-                  >
-                    ↗ See the work
-                  </Link>
-                  <a
-                    href={site.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-ivory/40 px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-ivory transition-colors hover:bg-ivory hover:text-ink"
-                  >
-                    LinkedIn ↗
-                  </a>
-                </div>
-              </div>
+              <h1 className="display reveal-up mt-8 text-[clamp(4.5rem,13vw,11rem)] leading-[0.78]">
+                Arya<br /><em className="font-normal text-coral">Kamble</em>
+              </h1>
+            </div>
+            <div className="lg:col-span-4 lg:pb-2">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-coral">Marketing & Creative</p>
+              <p className="mt-5 max-w-md text-xl leading-snug sm:text-2xl">
+                I build content, campaigns and brand experiences where strategy meets creativity.
+              </p>
+              <Button asChild className="mt-8 h-12 rounded-none px-6 text-[10px] uppercase tracking-[0.18em] shadow-none">
+                <Link to="/" hash="work">View selected work <ArrowDownRight aria-hidden="true" /></Link>
+              </Button>
             </div>
           </div>
-        </section>
-
-        <Marquee words={marqueeWords} />
-
-        {/* About */}
-        <section id="about" className="mx-auto max-w-[1320px] scroll-mt-20 px-5 py-28 sm:px-8">
-          <SectionLabel num="01" label="About" />
-          <div className="grid gap-14 md:grid-cols-[1fr_1fr]">
-            <h2 className="display text-5xl sm:text-7xl">
-              Marketing
-              <br />
-              that thinks.
-              <br />
-              <span className="text-coral">✳</span> Content that moves.
-            </h2>
-            <div className="space-y-6 md:pt-3">
-              {aboutCopy.map((p) => (
-                <p key={p} className="text-base leading-relaxed text-muted-foreground">
-                  {p}
-                </p>
-              ))}
-              <div className="flex flex-wrap gap-2 pt-4">
-                {skills.map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-full border border-border px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-muted-foreground"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Skills & Tools */}
-        <section className="mx-auto max-w-[1320px] px-5 pb-20 sm:px-8">
-          <div className="flex items-center gap-5">
-            <p className="text-[11px] uppercase tracking-[0.26em] text-muted-foreground">
-              Skills & Tools
-            </p>
-            <span className="h-px flex-1 bg-border" aria-hidden="true" />
-          </div>
-          <div className="mt-8 flex flex-wrap items-center gap-5 sm:gap-8">
-            {toolLogos.map((tool) => (
-              <img
-                key={tool.name}
-                src={tool.url}
-                alt={`${tool.name} logo`}
-                loading="lazy"
-                className="h-9 w-9 rounded-lg object-contain sm:h-11 sm:w-11"
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* Impact */}
-        <section className="mx-auto max-w-[1320px] px-5 pb-28 sm:px-8">
-          <SectionLabel num="02" label="Impact" />
-          <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {metrics.map((m) => (
-              <div key={m.label} className="blush-wash bg-background p-8">
-                <div className="display text-6xl">{m.value}</div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{m.label}</p>
+          <div className="mt-14 grid grid-cols-2 border-y border-border sm:grid-cols-3 lg:grid-cols-6">
+            {capabilities.map((capability) => (
+              <div key={capability} className="flex min-h-16 items-center border-b border-r border-border px-3 py-3 text-[9px] uppercase leading-relaxed tracking-[0.16em] last:border-r-0 sm:min-h-20 sm:px-4 lg:border-b-0">
+                {capability}
               </div>
             ))}
           </div>
         </section>
 
-        {/* Work */}
-        <section id="work" className="scroll-mt-20 pb-28">
-          {/* Dark editorial header */}
-          <div className="ink-panel">
-            <div className="mx-auto max-w-[1320px] px-5 py-20 sm:px-8 sm:py-28">
-              <div className="flex items-center gap-5">
-                <p className="text-[11px] uppercase tracking-[0.26em] text-ivory/70">
-                  03 / Selected work
-                </p>
-                <span className="h-px flex-1 bg-ivory/25" aria-hidden="true" />
-                <p className="hidden text-[11px] uppercase tracking-[0.26em] text-ivory/70 sm:block">
-                  Ideas → Content → Impact
-                </p>
+        <section id="work" className="scroll-mt-20 border-t border-border">
+          <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+            <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-8">
+                <p className="kicker text-coral">01 / Selected work</p>
+                <h2 className="display mt-5 text-6xl sm:text-8xl">The work,<br /><em className="font-normal">and the thinking.</em></h2>
               </div>
-              <div className="mt-10 grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
-                <h2 className="display text-[15vw] leading-[0.9] text-ivory sm:text-[10vw] lg:text-[8rem]">
-                  Selected
-                  <br />
-                  <span className="mr-4 inline-block align-middle text-[0.5em] text-ivory/80">✳</span>
-                  Work
-                </h2>
-                <p className="max-w-md text-sm leading-relaxed text-ivory/80">
-                  Eight projects, each with its own case study — the thinking, the execution and the
-                  work as it actually shipped. Real briefs. Real budgets. Real posts.
-                </p>
-              </div>
+              <p className="max-w-md text-sm leading-relaxed text-muted-foreground lg:col-span-4">
+                Eight projects across events, social media, campaigns, podcasts, branding and content production—shown through the decisions behind the output.
+              </p>
             </div>
-          </div>
-
-          {/* Card grid */}
-          <div className="mx-auto max-w-[1320px] px-5 pt-14 sm:px-8 sm:pt-20">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {caseStudies.map((c, i) => {
-                const dark = (i + Math.floor(i / 3)) % 2 === 1;
-                return (
-                  <Link
-                    key={c.slug}
-                    to="/work/$slug"
-                    params={{ slug: c.slug }}
-                    className={`group flex flex-col overflow-hidden border transition-transform duration-300 hover:-translate-y-1 ${
-                      dark ? "ink-panel border-transparent" : "blush-wash border-border bg-card"
-                    }`}
-                  >
-                    <div className="flex items-center gap-4 px-7 pt-7">
-                      <span
-                        className={`display text-4xl sm:text-5xl ${dark ? "text-ivory" : "text-foreground"}`}
-                      >
-                        {c.num}
-                      </span>
-                      <span
-                        className={`h-px flex-1 ${dark ? "bg-ivory/30" : "bg-border"}`}
-                        aria-hidden="true"
-                      />
-                      <span
-                        className={`text-[10px] uppercase leading-tight tracking-[0.18em] ${
-                          dark ? "text-ivory/70" : "text-muted-foreground"
-                        }`}
-                      >
-                        {c.discipline}
-                      </span>
-                    </div>
-                    <div className="mt-6 overflow-hidden px-7">
-                      <img
-                        src={c.cover}
-                        alt={c.title}
-                        loading="lazy"
-                        className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                    </div>
-                    <div className="flex flex-1 flex-col px-7 pb-7 pt-6">
-                      <h3
-                        className={`display text-2xl leading-tight sm:text-[1.7rem] ${
-                          dark ? "text-ivory" : "text-foreground"
-                        }`}
-                      >
-                        {c.title}
-                      </h3>
-                      <p
-                        className={`mt-3 text-[13px] leading-relaxed ${
-                          dark ? "text-ivory/70" : "text-muted-foreground"
-                        }`}
-                      >
-                        {c.summary}
-                      </p>
-                      <div className="mt-auto flex items-center justify-between pt-7">
-                        <span
-                          className={`text-[10px] uppercase tracking-[0.22em] transition-colors ${
-                            dark ? "text-ivory/75 group-hover:text-ivory" : "text-foreground/75 group-hover:text-coral"
-                          }`}
-                        >
-                          View project
-                        </span>
-                        <span
-                          className={`flex h-11 w-11 items-center justify-center rounded-full border text-base transition-all duration-300 group-hover:rotate-45 ${
-                            dark
-                              ? "border-ivory/50 text-ivory"
-                              : "border-foreground/40 text-foreground group-hover:border-coral group-hover:text-coral"
-                          }`}
-                          aria-hidden="true"
-                        >
-                          ↗
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+            {caseStudies.map((study, index) => <ProjectStory key={study.slug} study={study} index={index} />)}
           </div>
         </section>
 
-        {/* Experience */}
-        <section id="experience" className="mx-auto max-w-[1320px] scroll-mt-20 px-5 pb-28 sm:px-8">
-          <SectionLabel num="04" label="Journey" />
-          <h2 className="display mb-14 text-5xl sm:text-7xl">Where the work happened.</h2>
-          <div className="space-y-0">
-            {experience.map((e) => (
-              <div
-                key={e.role + e.company}
-                className="grid gap-5 border-t border-border py-10 md:grid-cols-[240px_1fr] md:gap-14"
-              >
-                <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                  {e.date}
-                </p>
-                <div>
-                  <h3 className="display text-3xl sm:text-4xl">{e.role}</h3>
-                  <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-coral">
-                    {e.company}
-                  </p>
-                  <p className="mt-5 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-                    {e.body}
-                  </p>
-                </div>
+        <section className="blush-wash border-y border-border">
+          <div className="mx-auto grid max-w-[1400px] gap-px px-5 py-16 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:px-12">
+            {metrics.map((metric) => (
+              <div key={metric.label} className="border-t border-border py-7 sm:px-6 sm:first:pl-0 lg:border-l lg:border-t-0">
+                <strong className="display text-5xl sm:text-6xl">{metric.value}</strong>
+                <p className="mt-3 max-w-[12rem] text-[10px] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground">{metric.label}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Services */}
-        <section className="mx-auto max-w-[1320px] px-5 pb-28 sm:px-8">
-          <SectionLabel num="05" label="What I can do" />
-          <div className="grid gap-px bg-border md:grid-cols-3">
-            {services.map((s, i) => (
-              <div key={s.title} className="bg-background p-8">
-                <span className="kicker">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="display mt-6 text-3xl">{s.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Contact */}
-        <section id="contact" className="ink-panel scroll-mt-20">
-          <div className="mx-auto max-w-[1320px] px-5 py-28 sm:px-8">
-            <p className="text-[11px] uppercase tracking-[0.26em] text-ivory/70">06 / Contact</p>
-            <h2 className="display mt-8 text-6xl text-ivory sm:text-8xl">
-              Let's make something
-              <br />
-              people remember.
-              <span className="ml-4 inline-block text-[0.5em] text-ivory/70">✳</span>
-            </h2>
-            <p className="mt-10 max-w-lg text-sm uppercase leading-relaxed tracking-[0.06em] text-ivory/75">
-              For marketing, social media, content, campaign or brand projects, reach me directly.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a
-                href={`mailto:${site.email}`}
-                className="rounded-full bg-ivory px-7 py-4 text-[11px] uppercase tracking-[0.18em] text-ink transition-opacity hover:opacity-85"
-              >
-                {site.email}
-              </a>
-              <a
-                href={site.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-ivory/40 px-7 py-4 text-[11px] uppercase tracking-[0.18em] text-ivory transition-colors hover:bg-ivory hover:text-ink"
-              >
-                Connect on LinkedIn ↗
-              </a>
-            </div>
+        <section className="mx-auto grid max-w-[1400px] gap-10 px-5 py-24 sm:px-8 lg:grid-cols-12 lg:px-12">
+          <p className="kicker text-coral lg:col-span-3">02 / About</p>
+          <div className="lg:col-span-7">
+            <h2 className="display text-5xl sm:text-7xl">Strategy gives the work direction. Creativity makes it worth noticing.</h2>
+            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground">{site.intro}</p>
+            <Link to="/about" className="editorial-link mt-8 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.18em]">More about me <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></Link>
           </div>
         </section>
       </main>
-
       <SiteFooter />
     </div>
   );

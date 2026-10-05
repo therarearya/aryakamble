@@ -5,3 +5,4 @@
 - [ ] Rebuild the portfolio and case studies with preserved real content
 - [ ] Verify every route, link, image, interaction, desktop/mobile layout, console, and overflow
 - [ ] Compare against the reference and complete a refinement pass
+- [ ] Keep the redesign on the exact current ivory, ink, coral, and blush theme
