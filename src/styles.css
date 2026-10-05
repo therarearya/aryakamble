@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Arya Kamble — editorial creative-studio design system. */
+/* Arya Kamble — warm editorial portfolio system. */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -98,7 +98,7 @@
 @utility display {
   font-family: var(--font-display);
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   line-height: 0.92;
 }
 
@@ -110,31 +110,16 @@
   font-weight: 500;
 }
 
-/* Deep ink panel with a soft coral aurora, as in the reference. */
 @utility ink-panel {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: oklch(0.14 0.008 30);
+  background: var(--ink);
   color: var(--ivory);
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: -30% -10% -55% -10%;
-    z-index: -1;
-    background:
-      radial-gradient(60% 55% at 78% 82%, oklch(0.68 0.22 12 / 0.95), transparent 62%),
-      radial-gradient(55% 50% at 28% 100%, oklch(0.82 0.13 8 / 0.7), transparent 60%),
-      radial-gradient(80% 60% at 50% 130%, oklch(0.95 0.05 20 / 0.85), transparent 70%);
-    filter: blur(10px);
-  }
 }
 
 @utility blush-wash {
-  background:
-    radial-gradient(50% 60% at 0% 40%, oklch(0.9 0.07 12 / 0.55), transparent 65%),
-    radial-gradient(45% 55% at 100% 90%, oklch(0.92 0.06 20 / 0.5), transparent 65%);
+  background: color-mix(in oklab, var(--blush) 16%, var(--background));
 }
 
 @utility hairline {
@@ -166,7 +151,7 @@
 }
 
 @utility reveal-up {
-  animation: reveal-up 0.9s cubic-bezier(0.22, 0.7, 0.2, 1) both;
+  animation: reveal-up 0.7s cubic-bezier(0.22, 0.7, 0.2, 1) both;
 }
 
 @utility book-stage {
@@ -186,13 +171,81 @@
   }
 }
 
-@utility spin-slow {
-  animation: spin-slow 24s linear infinite;
+@utility editorial-link {
+  position: relative;
+  text-decoration: none;
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -0.2rem;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 180ms ease;
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
-@keyframes spin-slow {
-  to {
-    transform: rotate(360deg);
+@utility case-nav {
+  position: sticky;
+  top: 5rem;
+  z-index: 30;
+  overflow-x: auto;
+  border-block: 1px solid var(--border);
+  background: color-mix(in oklab, var(--background) 94%, transparent);
+  backdrop-filter: blur(14px);
+  scrollbar-width: none;
+}
+
+@utility case-nav-track {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+}
+
+@utility case-nav-link {
+  display: flex;
+  min-height: 3.5rem;
+  align-items: center;
+  gap: 0.55rem;
+  border-right: 1px solid var(--border);
+  padding-inline: 1rem;
+  color: var(--muted-foreground);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 160ms ease, background-color 160ms ease;
+  &[aria-current="location"] {
+    background: color-mix(in oklab, var(--blush) 15%, var(--background));
+    color: var(--foreground);
+  }
+  & > span:first-child { color: var(--coral); }
+}
+
+@media (min-width: 1024px) {
+  @utility case-nav {
+    top: 7rem;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    backdrop-filter: none;
+  }
+  @utility case-nav-track {
+    display: grid;
+    width: auto;
+  }
+  @utility case-nav-link {
+    min-height: 2.75rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    padding-inline: 0;
   }
 }
 
@@ -202,7 +255,5 @@
   }
   .marquee-track,
   .reveal-up,
-  .spin-slow {
-    animation: none;
-  }
+  * { scroll-behavior: auto !important; }
 }
